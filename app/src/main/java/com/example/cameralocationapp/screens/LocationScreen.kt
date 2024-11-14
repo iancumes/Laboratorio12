@@ -15,6 +15,10 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material3.Icon
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -52,12 +56,16 @@ fun LocationScreen(navController: NavController) {
                     location = loc
                 }
             }) {
+                Icon(Icons.Filled.LocationOn, contentDescription = "Icono de Ubicación")
+                Spacer(modifier = Modifier.width(8.dp))
                 Text("Obtener Ubicación")
             }
         } else {
             Text("La aplicación requiere permiso de ubicación.")
             Spacer(modifier = Modifier.height(8.dp))
             Button(onClick = { locationPermissionState.launchPermissionRequest() }) {
+                Icon(Icons.Filled.Lock, contentDescription = "Icono de Permiso")
+                Spacer(modifier = Modifier.width(8.dp))
                 Text("Solicitar Permiso")
             }
         }
@@ -67,6 +75,7 @@ fun LocationScreen(navController: NavController) {
         }
     }
 }
+
 
 fun getCurrentLocation(
     fusedLocationClient: FusedLocationProviderClient,
